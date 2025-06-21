@@ -15,6 +15,23 @@ Life insurers and healthcare organizations often need to assess health risk base
 - Features: Demographics, biometrics, lifestyle factors, clinical measures
 - Target: Calculated Framingham 10-year CVD risk score (continuous) or high/low risk (binary)
 
+## Handling Missing Data
+
+Several variables in the NHANES dataset had missing values:
+
+| Variable          | % Missing | Imputation Method  |
+|-------------------|-----------|-------------------|
+| Total cholesterol | 6%        | Rows dropped if missing |
+| HDL cholesterol   | 6%        | Rows dropped if missing |
+| Systolic BP       | 5%        | Rows dropped if missing |
+| If on BP meds     | 67%       | Rows dropped if missing |
+| Smoker            | 82%       | Mode imputation |
+| Diabetes          | 3%        | Mode imputation |
+| Sex, Age, BP treatment | < 1% | Rows dropped if missing |
+
+After imputation, 40% of the original dataset was retained.
+
+
 ## Methods
 
 - **EDA**: Exploratory analysis of missingness, distribution of key health variables

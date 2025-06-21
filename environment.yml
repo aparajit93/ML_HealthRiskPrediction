@@ -1,0 +1,19 @@
+name: health-risk-prediction
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.9
+  - pandas=2.2.2
+  - numpy=1.26.4
+  - scikit-learn=1.4.2
+  - xgboost=2.0.3
+  - lightgbm=4.3.0
+  - matplotlib=3.8.4
+  - seaborn=0.13.2
+  - shap=0.44.1
+  - jupyterlab=4.2.1
+  - notebook=7.2.0
+  - pip
+  - pip:
+      - category_encoders==2.6.3    # optional for categorical feature encoding
