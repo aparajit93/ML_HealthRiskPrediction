@@ -37,15 +37,33 @@ After imputation, 40% of the original dataset was retained.
 - **EDA**: Exploratory analysis of missingness, distribution of key health variables
 - **Feature Engineering**: BMI, cholesterol ratios, blood pressure categories, lifestyle aggregates
 - **Models**:
-    - Logistic Regression (baseline)
-    - Random Forest
     - XGBoost
 - **Explainability**: SHAP values to understand model predictions
 - **Fairness**: Checked model behavior across age, gender, ethnicity groups
 
+## Model Performance
+
+Final model: XGBoost Classifier
+
+Selected threshold: **0.45**  
+Rationale: Chosen to achieve **Recall ≥ 90%** (priority: catching at-risk patients)
+
+Metrics at threshold 0.32:
+
+- Recall: 0.90
+- Precision: 0.88
+- F1 Score: 0.89
+- AUC: 0.93
+
+Confusion Matrix:
+- True Positives: 127
+- False Negatives: 14
+- False Positives: 18
+- True Negatives: 70
+
 ## Results
 
-- AUC-ROC: 0.85 (XGBoost model)
+- AUC-ROC: 0.93 (XGBoost model)
 - Calibration: Model produces well-calibrated probabilities
 - Key Predictors: Age, systolic BP, total cholesterol, HDL cholesterol, smoking status
 
