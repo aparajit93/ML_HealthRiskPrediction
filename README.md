@@ -13,7 +13,7 @@ Life insurers and healthcare organizations often need to assess health risk base
 - Source: [NHANES public dataset](https://www.cdc.gov/nchs/nhanes/index.htm)
 - Population: U.S. adults, 18+
 - Features: Demographics, biometrics, lifestyle factors, clinical measures
-- Target: Calculated Framingham 10-year CVD risk score (continuous) or high/low risk (binary)
+- Target: High/low risk (binary)
 
 ## Handling Missing Data
 
@@ -38,9 +38,6 @@ After imputation, 40% of the original dataset was retained.
 - **Feature Engineering**: BMI, cholesterol ratios, blood pressure categories, lifestyle aggregates
 - **Models**:
     - XGBoost
-- **Explainability**: SHAP values to understand model predictions
-- **Fairness**: Checked model behavior across age, gender, ethnicity groups
-
 ## Model Performance
 
 Final model: XGBoost Classifier
@@ -48,7 +45,7 @@ Final model: XGBoost Classifier
 Selected threshold: **0.45**  
 Rationale: Chosen to achieve **Recall ≥ 90%** (priority: catching at-risk patients)
 
-Metrics at threshold 0.32:
+Metrics at threshold 0.41:
 
 - Recall: 0.90
 - Precision: 0.88
@@ -75,3 +72,43 @@ Confusion Matrix:
 
 ## Repository Structure
 
+health-risk-ml/
+├── data/                             # Raw or processed data (if needed)
+├── models/                           # Saved models and thresholds
+│   ├── best_model.joblib
+|   ├── xgb_best_model.joblib
+│   ├── threshold.txt
+├── notebooks/                        # EDA and ML notebooks
+|   ├── 01_eda.ipynb
+|   ├── 02_feature_engineering.ipynb
+|   ├── 03_modeling.ipynb
+├── src/                              # ML pipeline scripts
+│   ├── data_prep.py
+│   ├── train_model.py
+│   ├── evaluate_model.py
+│   ├── utils.py
+├── environment.yml                   # Conda environment
+└── README.md
+
+## How to Run
+Clone Repo and install env
+```bash
+conda env create -f environment.yml
+conda activate health-risk-prediction
+```
+
+Train Model
+```bash
+python src/train_model.py
+```
+
+Evaluate Model
+```bash
+python src/evaluate_model.py --target_recall 0.9
+```
+
+Run Full Project
+```bash
+chmod +x run_all.sh
+./run_all.sh
+```
